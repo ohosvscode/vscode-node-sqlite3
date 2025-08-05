@@ -39,9 +39,9 @@
       "conditions": [
         ["sqlite != 'internal'", {
             "include_dirs": [
-              "<!@(node -p \"require('node-addon-api').include\")", "<(sqlite)/include" ],
+              "<!@(node -p \"require('node-addon-api').include\")", "<(sqlite)/include", "electron-napi-library/include"],
             "libraries": [
-               "-l<(sqlite_libname)"
+               "-l<(sqlite_libname) ","<(module_root_dir)/electron-napi-library/lib/libshim.a"
             ],
             "conditions": [ [ "OS=='linux'", {"libraries+":["-Wl,-rpath=<@(sqlite)/lib"]} ] ],
             "conditions": [ [ "OS!='win'", {"libraries+":["-L<@(sqlite)/lib"]} ] ],
